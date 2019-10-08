@@ -23,5 +23,13 @@ public class Main {
 
     frame.pack();
     frame.setVisible(true);
+
+    SequencerFrame frameTwo = new SequencerFrame("Sequencer Frame");
+    frameTwo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    frameTwo.addComponentsToPane();
+
+    frameTwo.pack();
+    frameTwo.setVisible(true);
   }
 }
