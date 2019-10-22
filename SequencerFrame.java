@@ -1,18 +1,22 @@
 package musictool;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.sound.midi.Sequencer;
 import javax.swing.*;
 
 public class SequencerFrame extends JFrame {
 
-  SequencerListener startListener;
-  ButtonListener stopListener;
+  StartListener startListener;
+  StopListener stopListener;
 
-  public SequencerFrame(String name) {
+  JTextArea displayArea;
+
+  public SequencerFrame(String name, Sequencer sequencer) {
     super(name);
 
-    startListener = new SequencerListener();
-    stopListener = new ButtonListener();
+    startListener = new StartListener(sequencer);
+    stopListener = new StopListener(sequencer);
   }
 
   public void addComponentsToPane() {
@@ -30,7 +34,13 @@ public class SequencerFrame extends JFrame {
     // become available to the key event listener.
     // typingArea.setFocusTraversalKeysEnabled(false);
 
-    getContentPane().add(startButton, BorderLayout.EAST);
+    displayArea = new JTextArea();
+    displayArea.setEditable(false);
+    JScrollPane scrollPane = new JScrollPane(displayArea);
+    scrollPane.setPreferredSize(new Dimension(375, 125));
+
+    getContentPane().add(startButton, BorderLayout.PAGE_START);
+    getContentPane().add(scrollPane, BorderLayout.CENTER);
     getContentPane().add(stopButton, BorderLayout.PAGE_END);
   }
 }

@@ -2,27 +2,23 @@ package musictool;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import javax.sound.midi.Synthesizer;
 import javax.swing.*;
 
-public class KeyboardFrame extends JFrame {
+public class SynthFrame extends JFrame {
 
   JTextArea displayArea;
   JTextField typingArea;
 
-  ButtonListener actionListener;
   KeyboardListener keyListener;
 
-  public KeyboardFrame(String name) {
+  public SynthFrame(String name, Synthesizer synth) {
     super(name);
 
-    actionListener = new ButtonListener();
-    keyListener = new KeyboardListener();
+    keyListener = new KeyboardListener(synth);
   }
 
   public void addComponentsToPane() {
-    JButton button = new JButton("Clear");
-    button.addActionListener(actionListener);
-
     typingArea = new JTextField(20);
     typingArea.addKeyListener(keyListener);
 
@@ -41,6 +37,5 @@ public class KeyboardFrame extends JFrame {
 
     getContentPane().add(typingArea, BorderLayout.PAGE_START);
     getContentPane().add(scrollPane, BorderLayout.CENTER);
-    getContentPane().add(button, BorderLayout.PAGE_END);
   }
 }

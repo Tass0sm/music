@@ -1,0 +1,7 @@
+* Main
+
+Contains Synthesizer and Sequencer
+
+** SynthFrame
+** SequencerFrame
+** 

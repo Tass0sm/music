@@ -3,21 +3,16 @@ package musictool;
 import java.awt.event.*;
 import javax.sound.midi.*;
 
-public class KeyboardListener implements KeyListener {
+public class SynthListener implements KeyListener {
 
   Synthesizer midiSynth;
   Instrument[] instr;
   MidiChannel[] mChannels;
 
-  public KeyboardListener() {
-    try {
-      /* documentation here:
-       * https://docs.oracle.com/javase/7/docs/api/javax/sound/midi/Synthesizer.html
-       */
-      midiSynth = MidiSystem.getSynthesizer();
-      midiSynth.open();
-    } catch (MidiUnavailableException e) {
-    }
+  public SynthListener(Synthesizer synth) {
+
+    midiSynth = synth;
+
     // get and load default instrument and channel lists
     instr = midiSynth.getDefaultSoundbank().getInstruments();
     mChannels = midiSynth.getChannels();
